@@ -1,26 +1,11 @@
 #include "at32f421_clock.h"
 
 
-//#define DEBUG
+#define DEBUG
 //#define DEBUG_PCB
 #define DEBUG_AUTOROTATION
 
-/*
-#define PIN_STATE_ALARM 			GPIOA,GPIO_PINS_2
-#define PIN_STATE_MOTOR				GPIOA,GPIO_PINS_3
-#define PIN_CONTROL_RELAY 			GPIOB,GPIO_PINS_5
-#define PIN_POWER_RELAY				GPIOB,GPIO_PINS_4
-#define PIN_LED_RED 				GPIOA,GPIO_PINS_12
-#ifdef DEBUG_PCB
-#define PIN_ZUMMER 					GPIOA,GPIO_PINS_15//14
-#else
-#define PIN_ZUMMER 					GPIOA,GPIO_PINS_14//14
-#endif
-#define PIN_POWER_SENSOR 			GPIOA,GPIO_PINS_11
-#define PIN_SENSOR_1 				GPIOA,GPIO_PINS_1
-#define PIN_SENSOR_2 				GPIOA,GPIO_PINS_0
-#define PIN_FUN 					GPIOB,GPIO_PINS_3
-*/
+
 
 #define PIN_SENSOR_1 			GPIOA,GPIO_PINS_3
 #define PIN_SENSOR_2 			GPIOA,GPIO_PINS_4
@@ -32,10 +17,10 @@
 #define PIN_FUN 					GPIOA,GPIO_PINS_0
 #define PIN_SOURSE_OFF 		GPIOB,GPIO_PINS_11
 #define PIN_BAT_TEST 			GPIOB,GPIO_PINS_10
-#define PIN_LED_1 				GPIOF,GPIO_PINS_0
-#define PIN_LED_2 				GPIOC,GPIO_PINS_15
-#define PIN_LED_3 				GPIOC,GPIO_PINS_14
-#define PIN_LED_4 				GPIOC,GPIO_PINS_13
+#define PIN_LED_2 				GPIOF,GPIO_PINS_0
+#define PIN_LED_3 				GPIOC,GPIO_PINS_15
+#define PIN_LED_4 				GPIOC,GPIO_PINS_14
+#define PIN_LED_1 				GPIOC,GPIO_PINS_13
 #define PIN_LED_RED 			GPIOF,GPIO_PINS_7
 #define PIN_LED_GREEN 		GPIOF,GPIO_PINS_6
 #define PIN_LED_BLUE 			GPIOA,GPIO_PINS_12
@@ -93,6 +78,9 @@ uint16_t BAD_WSP_VOLTAGE = 0;
 uint16_t GOOD_WSP_VOLTAGE = 0;
 uint16_t adc_result_0;
 uint16_t adc_result_1;
+uint16_t adc_result_2;
+uint16_t adc_result_3;
+
 char fun_result;
 char sensor_index;
 /*_____________________________________________________________________*/
@@ -472,10 +460,7 @@ void start_alarm() {
 	led_flags.SET_GREEN=0;
 	led_flags.SET_BLUE=0;
 	
-	led_flags.LED_1_ON=1;
-	led_flags.LED_2_ON=1;
-	led_flags.LED_3_ON=1;
-	led_flags.LED_4_ON=1;
+	
     sec_count=0;
 }
 
@@ -574,28 +559,7 @@ void sec_work() {
     ff.bits.SEC_LOCK = 1;
     sec_count++;
 
-	if (sec_count==1){
-		led_flags.LED_1_ON=1;
-	}
 	
-		if (sec_count==2){
-		led_flags.LED_2_ON=1;
-	}
-		
-		if (sec_count==3){
-		led_flags.LED_3_ON=1;
-	}
-		
-		if (sec_count==4){
-		led_flags.LED_4_ON=1;
-	}
-		
-		if (sec_count==5){
-		led_flags.LED_1_ON=0;
-			led_flags.LED_2_ON=0;
-			led_flags.LED_3_ON=0;
-			led_flags.LED_4_ON=0;
-	}
 
 	
     //back-forward gap
@@ -645,6 +609,41 @@ void sec_work() {
 
 void ms_200_work() {
 
+	
+	static char load_count=0;
+	static char l_count=0;
+	
+	
+	if (load_count<3){
+	++l_count;	
+	if (l_count==1){
+		led_flags.LED_1_ON=1;
+	}
+	
+		if (l_count==2){
+		led_flags.LED_2_ON=1;
+	}
+		
+		if (l_count==3){
+		led_flags.LED_3_ON=1;
+	}
+		
+		if (l_count==4){
+		led_flags.LED_4_ON=1;
+	}
+		
+		if (l_count==5){
+			led_flags.LED_1_ON=0;
+			led_flags.LED_2_ON=0;
+			led_flags.LED_3_ON=0;
+			led_flags.LED_4_ON=0;
+			l_count=0;
+			++load_count;
+	}
+}
+	
+	
+	
     ff.bits.SEC_LOCK = 0;
 
     if (ff.bits.ALARM_ON) {
@@ -680,23 +679,40 @@ void ms_100_work() {
     static char switch_sens_delay;
 
     static char f;
+	
+	
+
 
     if ( !ff.bits.ALARM_ON) {
 
         ++switch_sens_delay;
         if(switch_sens_delay>4) {
             switch_sens_delay=0;
-            if (sensor_index == 1)
-            {
+			
+			
+			switch (sensor_index){
+				
+				case 0:
                 adc_ordinary_channel_set(ADC1,ADC_CHANNEL_3,1,ADC_SAMPLETIME_239_5);
-                sensor_index = 0;
-
-            }
-            else
-            {
-                adc_ordinary_channel_set(ADC1,ADC_CHANNEL_4,1,ADC_SAMPLETIME_239_5);
                 sensor_index = 1;
-            }
+				break;
+				
+                case 1:
+                adc_ordinary_channel_set(ADC1,ADC_CHANNEL_4,1,ADC_SAMPLETIME_239_5);
+                sensor_index = 2;
+				break;
+				
+				case 2:
+                adc_ordinary_channel_set(ADC1,ADC_CHANNEL_5,1,ADC_SAMPLETIME_239_5);
+                sensor_index = 3;
+				break;
+				
+				case 3:
+                adc_ordinary_channel_set(ADC1,ADC_CHANNEL_6,1,ADC_SAMPLETIME_239_5);
+                sensor_index = 0;
+                break;
+            
+			}
 
         }
 
@@ -755,9 +771,12 @@ char PIN_FUN_STATE_GetValue() {
     return(fun_result);
 }
 uint16_t   ADC_GetConversion() {
+	/*
     if (adc_result_0<adc_result_1)
         return (adc_result_0);
-    else return(adc_result_1);
+    else 
+		  */
+	return(adc_result_1);
 };
 
 
@@ -1030,8 +1049,8 @@ void hardware_init() {
 
     crm_periph_clock_enable(CRM_GPIOA_PERIPH_CLOCK,TRUE);
     crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK,TRUE);
-		crm_periph_clock_enable(CRM_GPIOC_PERIPH_CLOCK,TRUE);
-		crm_periph_clock_enable(CRM_GPIOF_PERIPH_CLOCK,TRUE);
+	crm_periph_clock_enable(CRM_GPIOC_PERIPH_CLOCK,TRUE);
+	crm_periph_clock_enable(CRM_GPIOF_PERIPH_CLOCK,TRUE);
 		
     crm_periph_clock_enable(CRM_ADC1_PERIPH_CLOCK,TRUE);
     crm_periph_clock_enable(CRM_TMR6_PERIPH_CLOCK,TRUE);
@@ -1093,29 +1112,131 @@ void zummer_switch() {
 }
 void get_wsp() {
 
+	static char wsp_index=0;
+	
+	
+	
     if (ff.bits.ALLOW_MEASURE) {
 
         BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 4096));
         GOOD_WSP_VOLTAGE =(HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 4096));
 
-        static signed char bad_measures_counter = 0;
-        uint16_t res = ADC_GetConversion();
-        gpio_bits_reset(PIN_POWER_SENSOR);
-        if (res < BAD_WSP_VOLTAGE) {
-            bad_measures_counter++;
-        } else {
-            if (res > GOOD_WSP_VOLTAGE) {
-                bad_measures_counter--;
+        static signed char bad_measures_counter_0 = 0;
+		static signed char bad_measures_counter_1 = 0;
+		static signed char bad_measures_counter_2 = 0;
+		static signed char bad_measures_counter_3 = 0;
+		uint16_t res;
+		 ++wsp_index;
+		if (wsp_index==4)
+				wsp_index=0;
+		
+		switch (wsp_index){
+        
+			case 0:
+				
+			res = adc_result_0;
+			
+			if (res < BAD_WSP_VOLTAGE) {
+				bad_measures_counter_0++;
+			} else 
+				if (res > GOOD_WSP_VOLTAGE) {
+                bad_measures_counter_0--;
             }
-        }
-        if (bad_measures_counter > WSP_MEAS_COUNT) {
-            start_alarm();
-            bad_measures_counter = WSP_MEAS_COUNT;
-        }
-        if (bad_measures_counter < -WSP_MEAS_COUNT) {
-            clear_alarm();
-            bad_measures_counter = -WSP_MEAS_COUNT;
-        }
+			
+			if (bad_measures_counter_0 > WSP_MEAS_COUNT) {
+				led_flags.LED_1_ON=1;
+				start_alarm();
+				bad_measures_counter_0 = WSP_MEAS_COUNT; 
+			}
+			 
+			 if (bad_measures_counter_0 < -WSP_MEAS_COUNT) {
+				//  clear_alarm();
+				bad_measures_counter_0 = -WSP_MEAS_COUNT;
+			}
+			
+			break;
+			
+			case 1:
+			 res = adc_result_1;
+			
+			if (res < BAD_WSP_VOLTAGE) {
+				bad_measures_counter_1++;
+			} else 
+				if (res > GOOD_WSP_VOLTAGE) {
+                bad_measures_counter_1--;
+            }
+			
+			
+			 if (bad_measures_counter_1 > WSP_MEAS_COUNT) {
+				led_flags.LED_2_ON=1;
+				start_alarm();
+				bad_measures_counter_1 = WSP_MEAS_COUNT; 
+			 }
+			 
+			 if (bad_measures_counter_1 < -WSP_MEAS_COUNT) {
+				//  clear_alarm();
+				bad_measures_counter_1 = -WSP_MEAS_COUNT;
+			}
+
+			break;
+		
+			
+			case 2:
+			 res = adc_result_2;
+			
+			if (res < BAD_WSP_VOLTAGE) {
+				bad_measures_counter_2++;
+			} else 
+				if (res > GOOD_WSP_VOLTAGE) {
+                bad_measures_counter_2--;
+            }
+			
+			if (bad_measures_counter_2 > WSP_MEAS_COUNT) {
+				led_flags.LED_3_ON=1;
+				start_alarm();
+				bad_measures_counter_2 = WSP_MEAS_COUNT; 
+			}
+			 
+			 if (bad_measures_counter_2 < -WSP_MEAS_COUNT) {
+				//  clear_alarm();
+				bad_measures_counter_2 = -WSP_MEAS_COUNT;
+			}
+			 
+			break;
+		
+			
+			case 3:
+			 res = adc_result_3;
+			
+			if (res < BAD_WSP_VOLTAGE) {
+				bad_measures_counter_3++;
+			} else 
+				if (res > GOOD_WSP_VOLTAGE) {
+                bad_measures_counter_3--;
+            }
+			
+			if (bad_measures_counter_3 > WSP_MEAS_COUNT) {
+				led_flags.LED_4_ON=1;
+				start_alarm();
+				bad_measures_counter_3 = WSP_MEAS_COUNT; 
+			}
+			 
+			 if (bad_measures_counter_3 < -WSP_MEAS_COUNT) {
+				//  clear_alarm();
+				bad_measures_counter_3 = -WSP_MEAS_COUNT;
+			}
+			 
+			break;
+		
+		}
+	
+		
+		
+		
+        gpio_bits_reset(PIN_POWER_SENSOR);
+		
+	
+		
         ff.bits.ALLOW_MEASURE = 0;
     }
 }
@@ -1205,15 +1326,29 @@ void TMR6_GLOBAL_IRQHandler(void) {
 }
 
 void ADC1_CMP_IRQHandler(void) {
-    wdt_counter_reload();
-    if(sensor_index==0)
-    {
+    
+	wdt_counter_reload();
+	switch (sensor_index){
+		
+		case 0:
         adc_result_0	= adc_ordinary_conversion_data_get(ADC1);
-    }
-    else
-    {
+		break;
+		
+		case 1:
         adc_result_1	= adc_ordinary_conversion_data_get(ADC1);
-    }
+		break;
+		
+		case 2:
+        adc_result_2	= adc_ordinary_conversion_data_get(ADC1);
+		break;
+		
+		case 3:
+        adc_result_3	= adc_ordinary_conversion_data_get(ADC1);
+		break;
+		
+		
+	}
+	
     fun_result = gpio_input_data_bit_read(PIN_FUN);
 
     ff.bits.ALLOW_MEASURE = 1;
