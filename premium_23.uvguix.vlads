@@ -11,17 +11,17 @@
     <View>
       <WinId>38003</WinId>
       <ViewName>Registers</ViewName>
-      <TableColWidths>115 100</TableColWidths>
+      <TableColWidths>115 45</TableColWidths>
     </View>
     <View>
       <WinId>346</WinId>
       <ViewName>Code Coverage</ViewName>
-      <TableColWidths>665 140</TableColWidths>
+      <TableColWidths>665 160</TableColWidths>
     </View>
     <View>
       <WinId>204</WinId>
       <ViewName>Performance Analyzer</ViewName>
-      <TableColWidths>459 123 123 100</TableColWidths>
+      <TableColWidths>825</TableColWidths>
     </View>
   </SECTreeCtrl>
 
@@ -36,7 +36,7 @@
       <WinId>1936</WinId>
       <ViewName>Watch 1</ViewName>
       <UserString></UserString>
-      <TableColWidths>211 121 56</TableColWidths>
+      <TableColWidths>56 56 56</TableColWidths>
     </View>
     <View>
       <WinId>1937</WinId>
@@ -83,8 +83,8 @@
       <flags>2</flags>
       <showCmd>3</showCmd>
       <MinPosition>
-        <xPos>-32000</xPos>
-        <yPos>-32000</yPos>
+        <xPos>-1</xPos>
+        <yPos>-1</yPos>
       </MinPosition>
       <MaxPosition>
         <xPos>-1</xPos>
@@ -100,8 +100,8 @@
     <MDIClientArea>
       <RegID>0</RegID>
       <MDITabState>
-        <Len>792</Len>
-        <Data>01000000040000000100000001000000010000000100000000000000020000000000000001000000010000000000000028000000280000000100000006000000000000000100000031433A5C55736572735C766C6164735C446F63756D656E74735C4769744875625C7072656D69756D5F32335C6D61696E2E6300000000066D61696E2E6300000000FFDC7800FFFFFFFF3B433A5C55736572735C766C6164735C446F63756D656E74735C4769744875625C7072656D69756D5F32335C61743332663432315F636C6F636B2E63000000001061743332663432315F636C6F636B2E6300000000BECEA100FFFFFFFF53433A5C55736572735C766C6164735C446F63756D656E74735C4769744875625C7072656D69756D5F32335C5254455C4465766963655C2D4154333246343231433854375C61743332663432315F6770696F2E63000000000F61743332663432315F6770696F2E6300000000B3A6BE00FFFFFFFF4A433A5C4B65696C5F76355C41524D5C5041434B5C41727465727954656B5C41543332463432315F4446505C322E302E355C4465766963655C496E636C7564655C61743332663432312E68000000000A61743332663432312E6800000000F0A0A100FFFFFFFF56433A5C55736572735C766C6164735C446F63756D656E74735C4769744875625C7072656D69756D5F32335C5254455C4465766963655C2D4154333246343231433854375C737461727475705F61743332663432312E730000000012737461727475705F61743332663432312E7300000000BCA8E100FFFFFFFF52433A5C55736572735C766C6164735C446F63756D656E74735C4769744875625C7072656D69756D5F32335C5254455C4465766963655C2D4154333246343231433854375C61743332663432315F7764742E63000000000E61743332663432315F7764742E63000000009CC1B600FFFFFFFF0100000010000000C5D4F200FFDC7800BECEA100F0A0A100BCA8E1009CC1B600F7B88600D9ADC200A5C2D700B3A6BE00EAD6A300F6FA7D00B5E99D005FC3CF00C1838300CACAD500010000000000000002000000AE000000660000005605000082020000</Data>
+        <Len>245</Len>
+        <Data>01000000040000000100000001000000010000000100000000000000020000000000000001000000010000000000000028000000280000000100000001000000000000000100000031433A5C55736572735C766C6164735C446F63756D656E74735C4769744875625C7072656D69756D5F32335C6D61696E2E6300000000066D61696E2E6300000000FFDC7800FFFFFFFF0100000010000000C5D4F200FFDC7800BECEA100F0A0A100BCA8E1009CC1B600F7B88600D9ADC200A5C2D700B3A6BE00EAD6A300F6FA7D00B5E99D005FC3CF00C1838300CACAD500010000000000000002000000AE000000660000005605000082020000</Data>
       </MDITabState>
     </MDIClientArea>
     <ViewEx>
@@ -1340,7 +1340,7 @@
         <RecentRowIndex>0</RecentRowIndex>
         <RectRecentDocked>
           <Len>16</Len>
-          <Data>03000000A4010000AD000000BF010000</Data>
+          <Data>4A03000066000000EE0300006D010000</Data>
         </RectRecentDocked>
         <RectRecentFloat>
           <Len>16</Len>
@@ -1464,7 +1464,7 @@
         </RectRecentDocked>
         <RectRecentFloat>
           <Len>16</Len>
-          <Data>BE000000D5000000680100006A010000</Data>
+          <Data>0A0000000A0000006E0000006E000000</Data>
         </RectRecentFloat>
       </Window>
       <Window>
@@ -3516,56 +3516,11 @@
       <ActiveTab>0</ActiveTab>
       <Doc>
         <Name>.\main.c</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>232</TopLine>
-        <CurrentLine>1254</CurrentLine>
+        <ColumnNumber>5</ColumnNumber>
+        <TopLine>1333</TopLine>
+        <CurrentLine>1493</CurrentLine>
         <Folding>1</Folding>
-        <ContractedFolders>7,85,100,102,143,217,222,234,266,306,312,318,326,335,344,345,353,355,372,374,390,392,395,402,404,407,413,415,420,434,436,447,462,481,486,487,519,525,532,545,547,550,559,560,561,610,631,645,649,650,661,677,683,714,753,756,763,779,800,802,1006,1007,1059,1083,1088,1093,1095,1121,1145,1173,1206,1209,1213,1223</ContractedFolders>
-        <PaneID>0</PaneID>
-      </Doc>
-      <Doc>
-        <Name>.\at32f421_clock.c</Name>
-        <ColumnNumber>21</ColumnNumber>
-        <TopLine>38</TopLine>
-        <CurrentLine>82</CurrentLine>
-        <Folding>1</Folding>
-        <ContractedFolders></ContractedFolders>
-        <PaneID>0</PaneID>
-      </Doc>
-      <Doc>
-        <Name>RTE\Device\-AT32F421C8T7\at32f421_gpio.c</Name>
-        <ColumnNumber>36</ColumnNumber>
-        <TopLine>73</TopLine>
-        <CurrentLine>150</CurrentLine>
-        <Folding>1</Folding>
-        <ContractedFolders>83,109,115,124,173,177,203,218,226,230,257,261,288,292,320,331,340,344,371,387,416,427,463</ContractedFolders>
-        <PaneID>0</PaneID>
-      </Doc>
-      <Doc>
-        <Name>C:\Keil_v5\ARM\PACK\ArteryTek\AT32F421_DFP\2.0.5\Device\Include\at32f421.h</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>216</TopLine>
-        <CurrentLine>225</CurrentLine>
-        <Folding>1</Folding>
-        <ContractedFolders></ContractedFolders>
-        <PaneID>0</PaneID>
-      </Doc>
-      <Doc>
-        <Name>RTE\Device\-AT32F421C8T7\startup_at32f421.s</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>99</TopLine>
-        <CurrentLine>106</CurrentLine>
-        <Folding>1</Folding>
-        <ContractedFolders></ContractedFolders>
-        <PaneID>0</PaneID>
-      </Doc>
-      <Doc>
-        <Name>RTE\Device\-AT32F421C8T7\at32f421_wdt.c</Name>
-        <ColumnNumber>0</ColumnNumber>
-        <TopLine>52</TopLine>
-        <CurrentLine>61</CurrentLine>
-        <Folding>1</Folding>
-        <ContractedFolders></ContractedFolders>
+        <ContractedFolders>1062</ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
     </MDIGroup>

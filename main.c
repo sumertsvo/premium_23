@@ -8,86 +8,88 @@
 
 
 
-#define PIN_SENSOR_2 			GPIOA,GPIO_PINS_3
-#define PIN_SENSOR_3 			GPIOA,GPIO_PINS_4
-#define PIN_SENSOR_4 			GPIOA,GPIO_PINS_5
-#define PIN_SENSOR_1 			GPIOA,GPIO_PINS_6
-#define PIN_METER_1 			GPIOA,GPIO_PINS_1
-#define PIN_METER_2 			GPIOA,GPIO_PINS_2
-#define PIN_BAT_VOLT 			GPIOA,GPIO_PINS_7
-#define PIN_FUN 				GPIOA,GPIO_PINS_0
+#define PIN_SENSOR_2 				GPIOA,GPIO_PINS_3
+#define PIN_SENSOR_3 				GPIOA,GPIO_PINS_4
+#define PIN_SENSOR_4 				GPIOA,GPIO_PINS_5
+#define PIN_SENSOR_1 				GPIOA,GPIO_PINS_6
+#define PIN_METER_1 				GPIOA,GPIO_PINS_1
+#define PIN_METER_2 				GPIOA,GPIO_PINS_2
+#define PIN_BAT_VOLT 				GPIOA,GPIO_PINS_7
+#define PIN_FUN 						GPIOA,GPIO_PINS_0
 #define PIN_SOURSE_OFF 			GPIOB,GPIO_PINS_11
-#define PIN_BAT_TEST 			GPIOB,GPIO_PINS_10
-#define PIN_LED_2 				GPIOF,GPIO_PINS_0
-#define PIN_LED_3 				GPIOC,GPIO_PINS_15
-#define PIN_LED_4 				GPIOC,GPIO_PINS_14
-#define PIN_LED_1 				GPIOC,GPIO_PINS_13
-#define PIN_LED_RED 			GPIOF,GPIO_PINS_7
+#define PIN_BAT_TEST 				GPIOB,GPIO_PINS_10
+#define PIN_LED_2 					GPIOF,GPIO_PINS_0
+#define PIN_LED_3 					GPIOC,GPIO_PINS_15
+#define PIN_LED_4 					GPIOC,GPIO_PINS_14
+#define PIN_LED_1 					GPIOC,GPIO_PINS_13
+#define PIN_LED_RED 				GPIOF,GPIO_PINS_7
 #define PIN_LED_GREEN 			GPIOF,GPIO_PINS_6
-#define PIN_LED_BLUE 			GPIOA,GPIO_PINS_12
-#define PIN_RF_POWER 			GPIOB,GPIO_PINS_8
+#define PIN_LED_BLUE 				GPIOA,GPIO_PINS_12
+#define PIN_RF_POWER 				GPIOB,GPIO_PINS_8
 #define PIN_MODULE_POWER 		GPIOB,GPIO_PINS_9
 #define PIN_POWER_RELAY 		GPIOB,GPIO_PINS_13
-#define PIN_CONTROL_RELAY 		GPIOB,GPIO_PINS_12
-#define PIN_ZUMMER 				GPIOA,GPIO_PINS_11
+#define PIN_CONTROL_RELAY 	GPIOB,GPIO_PINS_12
+#define PIN_ZUMMER 					GPIOA,GPIO_PINS_11
 #define PIN_RS485_DIRECT 		GPIOB,GPIO_PINS_2
 #define PIN_POWER_SENSOR 		GPIOB,GPIO_PINS_2
-#define PIN_TKEY 				GPIOB,GPIO_PINS_14
+#define PIN_TKEY 						GPIOB,GPIO_PINS_14
 #define PIN_RADIO_LED 			GPIOB,GPIO_PINS_15
-#define PIN_BUTTON 				GPIOF,GPIO_PINS_1
-#define PIN_SPI_OUT 			GPIOB,GPIO_PINS_5
-#define PIN_SPI_INP 			GPIOB,GPIO_PINS_4
-#define PIN_SPI_CLK 			GPIOB,GPIO_PINS_3
-#define PIN_SPI_SEL 			GPIOA,GPIO_PINS_15
-#define PIN_MCU_RX_T 			GPIOB,GPIO_PINS_7
-#define PIN_MCU_TX_T 			GPIOB,GPIO_PINS_6
-#define PIN_MCU_RX			 	GPIOA,GPIO_PINS_10
-#define PIN_MCU_TX			 	GPIOA,GPIO_PINS_9
+#define PIN_BUTTON 					GPIOF,GPIO_PINS_1
+#define PIN_SPI_OUT 				GPIOB,GPIO_PINS_5
+#define PIN_SPI_INP 				GPIOB,GPIO_PINS_4
+#define PIN_SPI_CLK 				GPIOB,GPIO_PINS_3
+#define PIN_SPI_SEL 				GPIOA,GPIO_PINS_15
+#define PIN_MCU_RX_T 				GPIOB,GPIO_PINS_7
+#define PIN_MCU_TX_T 				GPIOB,GPIO_PINS_6
+#define PIN_MCU_RX			 		GPIOA,GPIO_PINS_10
+#define PIN_MCU_TX			 		GPIOA,GPIO_PINS_9
 #define PIN_STATE_MOTOR	 		GPIOB,GPIO_PINS_0
 #define PIN_STATE_ALARM	 		GPIOA,GPIO_PINS_8
-#define SWDCLK					GPIOA,GPIO_PINS_14
-#define SWDIO					GPIOA,GPIO_PINS_13
+#define SWDCLK							GPIOA,GPIO_PINS_14
+#define SWDIO								GPIOA,GPIO_PINS_13
 
 /*_____________________________________________________________________*/
 
 
 /*DEFAULT_SETTINGS*/
 #define VERSION 1
-const char SHORT_ZUMMER_DELAY = 30;
-const char LONG_ZUMMER_DELAY = 120;
-const char FRIMWARE_VERSION_EEPROM_ADR = 0x01;
-const unsigned AUTOROTATION_DAYS = 14;
-const char MOVING_WAIT_DELAY = 1;
-const unsigned LOW_WATER_RESISTANSE = 20000; 
-const unsigned HIGH_WATER_RESISTANSE = 25000; 
-const unsigned UP_RESISTANSE = 20000; 
+const char 				SHORT_ZUMMER_DELAY = 30;
+const char 				LONG_ZUMMER_DELAY = 120;
+const char 				FRIMWARE_VERSION_EEPROM_ADR = 0x01;
+const unsigned 		AUTOROTATION_DAYS = 14;
+const char 				MOVING_WAIT_DELAY = 1;
+const unsigned 		LOW_WATER_RESISTANSE = 20000; 
+const unsigned 		HIGH_WATER_RESISTANSE = 25000; 
+const unsigned 		UP_RESISTANSE = 20000; 
 
-const char WSP_MEAS_COUNT = 4;
-const char FUN_MEAS_COUNT = 3; 
-const char BUTTON_MEAS_COUNT =3;
-const char BUTTON_LONG_MEAS_COUNT =3;
+const char 				WSP_MEAS_COUNT = 4;
+const char 				FUN_MEAS_COUNT = 3; 
+const char 				BUTTON_MEAS_COUNT =3;
+const char 				BUTTON_LONG_MEAS_COUNT =3;
 
-const char RELAY_POWER_WORK_DELAY = 15; // sec
-const char RELAY_GAP = 1; //sec
-const char MELODY_REPEAT_DELAY = 30; //min
+const char 				RELAY_POWER_WORK_DELAY = 15; // sec
+const char 				RELAY_GAP = 1; //sec
+const char 				MELODY_REPEAT_DELAY = 30; //min
+
 #ifdef DEBUG_AUTOROTATION
 const uint32_t AUTOROTATION_DELAY = 300;
 #else
 const uint32_t AUTOROTATION_DELAY = (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 #endif
+
 /*voltages*/
 uint16_t BAD_WSP_VOLTAGE = 0;
 uint16_t GOOD_WSP_VOLTAGE = 0;
-uint16_t adc_result_0;
-uint16_t adc_result_1;
-uint16_t adc_result_2;
-uint16_t adc_result_3;
+uint16_t adc_result_0 = 0;
+uint16_t adc_result_1 = 0;
+uint16_t adc_result_2 = 0;
+uint16_t adc_result_3 = 0;
 
 char fun_result;
 char sensor_index;
 
 struct color {
-	char R;
+		char R;
     char G;
     char B;
 };
@@ -95,35 +97,35 @@ struct color {
 
 /**FLAGS*/
 static union {
-	uint64_t  value;
+		uint64_t  value;
     struct {
 
-        unsigned ALARM_ON : 1;
-        unsigned ALARM_OFF : 1;
-        unsigned FUN_HIGH : 1;
-        unsigned FUN_LOW : 1;
-        unsigned ALLOW_MEASURE : 1;
-        unsigned ALLOW_FUN : 1;
-        unsigned MEASURING: 1;
-        unsigned TARGET_POS_CLOSED: 1;
+        unsigned 	ALARM_ON : 1;
+        unsigned 	ALARM_OFF : 1;
+        unsigned 	FUN_HIGH : 1;
+        unsigned 	FUN_LOW : 1;
+        unsigned 	ALLOW_MEASURE : 1;
+        unsigned 	ALLOW_FUN : 1;
+        unsigned 	MEASURING: 1;
+        unsigned 	TARGET_POS_CLOSED: 1;
 
-        unsigned TARGET_POS_OPENED: 1;
-        unsigned OPENING : 1;
-        unsigned OPENED : 1;
-        unsigned CLOSING : 1;
-        unsigned CLOSED : 1;
-        unsigned RELAY_POWER_ON : 1;
-        unsigned RELAY_CONTROL_ON : 1;
-        unsigned TONE_ON : 1;
+        unsigned 	TARGET_POS_OPENED: 1;
+        unsigned 	OPENING : 1;
+        unsigned 	OPENED : 1;
+        unsigned 	CLOSING : 1;
+        unsigned 	CLOSED : 1;
+        unsigned 	RELAY_POWER_ON : 1;
+        unsigned 	RELAY_CONTROL_ON : 1;
+        unsigned 	TONE_ON : 1;
 
-        unsigned TONE_OFF : 1;
-        unsigned SIREN : 1;
-        unsigned ZUM_BUSY : 1;
-        unsigned MOVING_ALLOWED : 1;
-        unsigned AUTOROTATION_WORK: 1;
-        unsigned MELODY_ON: 1;
-        unsigned MSTICK_ALLOW: 1;
-        unsigned SEC_LOCK : 1;
+        unsigned 	TONE_OFF : 1;
+        unsigned 	SIREN : 1;
+        unsigned 	ZUM_BUSY : 1;
+        unsigned 	MOVING_ALLOWED : 1;
+        unsigned 	AUTOROTATION_WORK: 1;
+        unsigned 	MELODY_ON: 1;
+        unsigned 	MSTICK_ALLOW: 1;
+        unsigned 	SEC_LOCK : 1;
 
         unsigned  LAST_BEEP_LONG: 1;
         unsigned  LOADED: 1;
@@ -134,7 +136,7 @@ static union {
         unsigned  ALLOW_WSP_2: 1;
         unsigned  ALLOW_WSP_3: 1;
 		
-		unsigned S1_ALARM: 1;
+				unsigned S1_ALARM: 1;
         unsigned S2_ALARM: 1;
         unsigned S3_ALARM: 1;
         unsigned S4_ALARM: 1;
@@ -143,7 +145,7 @@ static union {
         unsigned : 1;
         unsigned : 1;
 		
-		unsigned : 1;
+				unsigned : 1;
         unsigned : 1;
         unsigned : 1;
         unsigned : 1;
@@ -152,7 +154,7 @@ static union {
         unsigned : 1;
         unsigned : 1;
 		
-		unsigned : 1;
+				unsigned : 1;
         unsigned : 1;
         unsigned : 1;
         unsigned : 1;
@@ -161,7 +163,7 @@ static union {
         unsigned : 1;
         unsigned : 1;
 		
-		unsigned : 1;
+				unsigned : 1;
         unsigned : 1;
         unsigned : 1;
         unsigned : 1;
@@ -170,29 +172,28 @@ static union {
         unsigned : 1;
         unsigned : 1;
 
-      
     } bits;
 } flags;
 
 
 struct {
-        unsigned LED_1 : 1;
-        unsigned LED_2 : 1;
-        unsigned LED_3 : 1;
-        unsigned LED_4 : 1;
-        unsigned RED : 1;
-        unsigned GREEN : 1;
-        unsigned BLUE: 1;
-        unsigned LED_1_ON: 1;
+        unsigned 	LED_1 : 1;
+        unsigned 	LED_2 : 1;
+        unsigned 	LED_3 : 1;
+        unsigned 	LED_4 : 1;
+        unsigned 	RED : 1;
+        unsigned 	GREEN : 1;
+        unsigned 	BLUE: 1;
+        unsigned 	LED_1_ON: 1;
 
-        unsigned LED_2_ON: 1;
-        unsigned LED_3_ON : 1;
-        unsigned LED_4_ON : 1;
-		struct color active_color;
-		struct color collors[64];
-        char SET_GREEN;
-        char SET_BLUE;
-        char SET_RED;
+        unsigned 	LED_2_ON: 1;
+        unsigned 	LED_3_ON : 1;
+        unsigned 	LED_4_ON : 1;
+				struct 		color active_color;
+				struct 		color collors[64];
+        char 			SET_GREEN;
+        char 			SET_BLUE;
+        char 			SET_RED;
         unsigned  : 1;
 
         unsigned  : 1;
@@ -222,21 +223,21 @@ struct {
 /*TIMES*/
 
 /*sec_div*/
-uint32_t time_rotation;
-unsigned time_relay_power; 
-unsigned time_relay_control;
-unsigned time_relay_gap;
+uint32_t 	time_rotation;
+unsigned 	time_relay_power; 
+unsigned 	time_relay_control;
+unsigned 	time_relay_gap;
 
-uint64_t tone_gap_millis;
-char sec_count = 0;
-char time_melody; //minute
-char time_moving_wait;
+uint64_t 	tone_gap_millis;
+char 			sec_count = 0;
+char 			time_melody; //minute
+char 			time_moving_wait;
 
 
 /*ms_div*/
 
-uint64_t millis = 0 ;
-unsigned ms_tone_delay = 0;
+uint64_t 	millis = 0 ;
+unsigned 	ms_tone_delay = 0;
 /*_____________________________________________________________________*/
 
 char led_matrix [8][4] =
@@ -251,8 +252,7 @@ char led_matrix [8][4] =
 {1,0,0,0}
 };
 
-char stand_matrix [24][3] =
-	
+char stand_matrix [24][3] =	
 {
 {4,0,0},
 {0,0,0},
@@ -281,6 +281,7 @@ char stand_matrix [24][3] =
 };
 
 
+
 /*counters*/
 char beep_short_count;
 char beep_long_count;
@@ -299,6 +300,7 @@ void mx_adc_clock_init(void){
 
 
 
+
 /*SERVICE*/
 
 /*led*/
@@ -308,7 +310,8 @@ void mx_adc_clock_init(void){
 
 
 
-char led_rotate_right_tick(){
+char led_rotate_right_tick()
+{
 	static char i=0;
 	++i;
 	if (i==8) i=0;
@@ -318,23 +321,21 @@ char led_rotate_right_tick(){
 	led_flags.LED_3_ON= led_matrix[i][2];
 	led_flags.LED_4_ON= led_matrix[i][3];
 	
-	
 	return i;
 }
 
-char led_rotate_left_tick(){
-	
+char led_rotate_left_tick()
+{
 	
 	static char i=0;
 	
 	if (i==0) i=8;
-	
+	--i;
 	led_flags.LED_1_ON= led_matrix[i][0];
 	led_flags.LED_2_ON= led_matrix[i][1];
 	led_flags.LED_3_ON= led_matrix[i][2];
 	led_flags.LED_4_ON= led_matrix[i][3];
-	
-	--i;
+
 	return i;
 }
 
@@ -352,13 +353,12 @@ void led_standby()
 	*/
 	
 	
-	
-	
+
 	if (i==24) i=0;
 	
-	led_flags.SET_RED= stand_matrix[i][0];
-	led_flags.SET_GREEN= stand_matrix[i][1];
-	led_flags.SET_BLUE= stand_matrix[i][2];
+	led_flags.SET_RED= 		stand_matrix[i][0];
+	led_flags.SET_GREEN= 	stand_matrix[i][1];
+	led_flags.SET_BLUE= 	stand_matrix[i][2];
 	
 	if (led_rotate_right_tick()==0) {
 	static	char k=0;
@@ -373,7 +373,8 @@ void led_standby()
 }
 
 
-void switch_color(){
+void switch_color()
+{
 	
 	static char color_ms_counter;
 	
@@ -405,7 +406,8 @@ if (color_ms_counter>=5){
 }
 }
 
-void framing(){
+void framing()
+{
 	static char frame_ms_counter;
 	static char next;
 	
@@ -445,19 +447,22 @@ void framing(){
 	}
 }
 
-void switch_led(){
+void switch_led()
+{
 	framing();
 	switch_color();
 }
 	
-/*sound*/
-void start_tone() {
+/*SOUND*/
+void start_tone()
+{
     flags.bits.ZUM_BUSY = 1;
     flags.bits.TONE_ON = 1;
     flags.bits.TONE_OFF = 0;
 }
 
-void stop_tone() {
+void stop_tone()
+{
 
   flags.bits.ZUM_BUSY = 0;
     flags.bits.TONE_ON = 0;
@@ -465,7 +470,8 @@ void stop_tone() {
 
 }
 
-void beep_short() {
+void beep_short()
+{
 
     if (beep_short_count > 0)	beep_short_count--;
     ms_tone_delay = SHORT_ZUMMER_DELAY;
@@ -474,7 +480,8 @@ void beep_short() {
 }
 
 
-void beep_long() {
+void beep_long()
+{
 
     if (beep_long_count > 0) 	beep_long_count--;
     ms_tone_delay = LONG_ZUMMER_DELAY;
@@ -483,7 +490,8 @@ void beep_long() {
 }
 
 
-void beep_double() {
+void beep_double()
+{
     if (flags.bits.LAST_BEEP_LONG) {
         beep_short();
     } else {
@@ -492,7 +500,8 @@ void beep_double() {
 }
 
 /*moving*/
-void go_close() {
+void go_close() 
+{
 
    // if (!flags.bits.CLOSING && !flags.bits.CLOSED && flags.bits.MOVING_ALLOWED) {
         flags.bits.CLOSING = 1;
@@ -511,7 +520,8 @@ void go_close() {
   //  }
 }
 
-void go_open() {
+void go_open()
+{
 
  //   if (!flags.bits.OPENED && !flags.bits.OPENING && flags.bits.MOVING_ALLOWED) {
         flags.bits.OPENING = 1;
@@ -529,7 +539,8 @@ void go_open() {
 
 
 
-void close() {
+void close()
+{
     if (!flags.bits.CLOSED && !flags.bits.OPENED)
     {
         flags.bits.OPENED=1;
@@ -542,7 +553,8 @@ void close() {
 
 
 
-void open() {
+void open()
+{
     if (!flags.bits.CLOSED && !flags.bits.OPENED)
     {
         flags.bits.CLOSED=1;
@@ -553,7 +565,8 @@ void open() {
 }
 
 
-void relay_tick() {
+void relay_tick()
+{
 
     if (flags.bits.OPENING && flags.bits.CLOSING) {
         return;
@@ -604,7 +617,8 @@ void relay_tick() {
 
 
 /*logic*/
-void start_alarm() {
+void start_alarm()
+{
 	
 	
     flags.bits.TARGET_POS_CLOSED=1;
@@ -625,7 +639,8 @@ void start_alarm() {
 	
 }
 
-void clear_alarm() {
+void clear_alarm()
+{
     flags.bits.ALARM_ON = 0;
     flags.bits.ALARM_OFF = 1;
 	led_flags.SET_RED=0;
@@ -640,7 +655,8 @@ void clear_alarm() {
 	led_flags.LED_4_ON=0;
 }
 
-void fun_work() {
+void fun_work()
+{
     {
         if (
             flags.bits.TARGET_POS_OPENED &&
@@ -676,7 +692,8 @@ void fun_work() {
 }
 
 
-void autorotation_work() {
+void autorotation_work()
+{
 
     if ((time_rotation > AUTOROTATION_DELAY) &&
             flags.bits.CLOSED &&
@@ -702,7 +719,8 @@ void autorotation_work() {
 
 /*TIMES*/
 
-void minute_tick() {
+void minute_tick()
+{
 
 	flags.bits.STAND_WAIT=0;
 	flags.bits.LOADED =1;
@@ -718,7 +736,8 @@ void minute_tick() {
 }
 
 
-void sec_30_work() {
+void sec_30_work()
+{
     if (flags.bits.MELODY_ON) {
         if (flags.bits.SIREN) {
             flags.bits.SIREN = 0;
@@ -730,7 +749,8 @@ void sec_30_work() {
 
 
 
-void sec_work() {
+void sec_work()
+{
 
     flags.bits.SEC_LOCK = 1;
     sec_count++;
@@ -784,7 +804,8 @@ void sec_work() {
     }
 }
 
-void ms_200_work() {
+void ms_200_work()
+{
 
 	
 	static char load_count=0;
@@ -896,7 +917,8 @@ void ms_200_work() {
 
 void get_button();
 
-void ms_100_work() {
+void ms_100_work()
+{
 
     static char switch_sens_delay;
 
@@ -951,7 +973,8 @@ void ms_100_work() {
    // }
 }
 
-void ms_tick() {
+void ms_tick()
+{
 
 
 	
@@ -990,13 +1013,15 @@ void ms_tick() {
 /*¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦*/
 
 /*HARDWARE*/
-char PIN_FUN_STATE_GetValue() {
+char PIN_FUN_STATE_GetValue()
+{
     return(fun_result);
 }
 
 
 
-void gpio_set(gpio_type *PORT, uint32_t PIN, gpio_drive_type DRIVE, gpio_mode_type MODE, gpio_output_type OUT_TYPE, gpio_pull_type PULL ) {
+void gpio_set(gpio_type *PORT, uint32_t PIN, gpio_drive_type DRIVE, gpio_mode_type MODE, gpio_output_type OUT_TYPE, gpio_pull_type PULL )
+{
 
     gpio_init_type pinx;
 
@@ -1012,7 +1037,8 @@ void gpio_set(gpio_type *PORT, uint32_t PIN, gpio_drive_type DRIVE, gpio_mode_ty
 
 }
 
-void timer_init() {
+void timer_init()
+{
 
 
     nvic_irq_enable(TMR6_GLOBAL_IRQn,35,36);
@@ -1033,7 +1059,8 @@ void timer_init() {
 
 }
 
-void my_gpio_init(){
+void my_gpio_init()
+{
 	
 	
 
@@ -1178,7 +1205,8 @@ gpio_set(PIN_BUTTON,
 
 
 
-void hardware_init() {
+void hardware_init()
+{
 #ifndef DEBUG
 	
 	/*
@@ -1231,7 +1259,8 @@ void hardware_init() {
 }
 
 
-void hardware_work() {
+void hardware_work()
+{
     gpio_bits_write(PIN_STATE_ALARM,(confirm_state) (flags.bits.ALARM_ON));
 		gpio_bits_write(PIN_STATE_MOTOR,(confirm_state) (flags.bits.OPENING || flags.bits.OPENED));
     gpio_bits_write(PIN_CONTROL_RELAY,(confirm_state) (flags.bits.RELAY_CONTROL_ON));
@@ -1255,7 +1284,8 @@ void hardware_work() {
 }
 
 
-void zummer_switch() {
+void zummer_switch()
+{
 
     if(flags.bits.TONE_ON) gpio_bits_write(GPIOA,GPIO_PINS_11,(confirm_state) (!GPIOA ->odt_bit.odt11));   //todo
 
@@ -1265,7 +1295,8 @@ void zummer_switch() {
 #endif
 
 }
-void get_wsp() {
+void get_wsp()
+{
 
 
 	
@@ -1419,7 +1450,8 @@ void get_wsp() {
 }
 
 
-void get_fun() {
+void get_fun()
+{
     if (flags.bits.ALLOW_FUN) {
         static signed char fun_counter;
 
@@ -1453,11 +1485,12 @@ void get_fun() {
 }
 
 
-void get_button() {
+void get_button()
+{
     
         static signed char button_counter;
 
-	    static signed char button_long_counter;
+	 //   static signed char button_long_counter;
 	
         if (gpio_input_data_bit_read(PIN_BUTTON)==0) button_counter--;
         else button_counter++;
@@ -1487,7 +1520,8 @@ void get_button() {
 
 
 
-void TMR6_GLOBAL_IRQHandler(void) {
+void TMR6_GLOBAL_IRQHandler(void)
+{
 
 
     static char i =0;
@@ -1505,7 +1539,8 @@ void TMR6_GLOBAL_IRQHandler(void) {
     TMR6 ->ists_bit.ovfif =0;
 }
 
-void ADC1_CMP_IRQHandler(void) {
+void ADC1_CMP_IRQHandler(void)
+{
     
 	//wdt_counter_reload();
 	
@@ -1550,7 +1585,8 @@ void ADC1_CMP_IRQHandler(void) {
 
 
 
-void start_setup() {
+void start_setup()
+{
     hardware_init(); // initialize the device
 
     flags.value = 0;
@@ -1558,7 +1594,7 @@ void start_setup() {
     gpio_bits_reset(PIN_POWER_RELAY);
     gpio_bits_reset(PIN_CONTROL_RELAY);
     gpio_bits_reset(PIN_STATE_ALARM);
-	gpio_bits_reset(PIN_STATE_MOTOR);
+		gpio_bits_reset(PIN_STATE_MOTOR);
     gpio_bits_reset(PIN_POWER_SENSOR);
     gpio_bits_reset(PIN_ZUMMER);
     gpio_bits_reset(PIN_LED_RED);
@@ -1578,7 +1614,8 @@ void start_setup() {
 /*¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦*/
 
 
-int main(void) {
+int main(void)
+{
 	
 	//STARTUP_INIT
 	system_clock_config();
