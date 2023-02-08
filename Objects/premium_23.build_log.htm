@@ -27,24 +27,29 @@ Project File Date:  02/07/2023
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
-compiling at32f421_clock.c...
 compiling at32f421_gpio.c...
-compiling at32f421_adc.c...
 compiling at32f421_flash.c...
-compiling main.c...
-compiling at32f421_ertc.c...
+compiling at32f421_clock.c...
 compiling at32f421_crm.c...
+compiling at32f421_adc.c...
+compiling at32f421_ertc.c...
+compiling main.c...
+main.c(897): warning:  #1295-D: Deprecated declaration get_button - give arg types
+  void get_button();
+main.c(1460): warning:  #177-D: variable "button_long_counter"  was declared but never referenced
+  	    static signed char button_long_counter;
+main.c: 2 warnings, 0 errors
 assembling startup_at32f421.s...
 compiling at32f421_misc.c...
-compiling at32f421_usart.c...
-compiling at32f421_wdt.c...
 compiling at32f421_spi.c...
+compiling at32f421_wdt.c...
 compiling at32f421_tmr.c...
+compiling at32f421_usart.c...
 compiling system_at32f421.c...
 linking...
-Program Size: Code=7856 RO-data=252 RW-data=124 ZI-data=1636  
+Program Size: Code=8868 RO-data=252 RW-data=228 ZI-data=1836  
 FromELF: creating hex file...
-".\Objects\premium_23.axf" - 0 Error(s), 0 Warning(s).
+".\Objects\premium_23.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -86,28 +91,28 @@ Package Vendor: ArteryTek
       Source file:   Device\Source\system_at32f421.c
 
    * Component: ArteryTek::Device:at32f421_firmware_library:wdt:2.0.0
-      Include file:  Device\Firmware\Peripherals\inc\at32f421_wdt.h
       Source file:   Device\Firmware\Peripherals\src\at32f421_wdt.c
+      Include file:  Device\Firmware\Peripherals\inc\at32f421_wdt.h
 
    * Component: ArteryTek::Device:at32f421_firmware_library:usart:2.0.0
       Include file:  Device\Firmware\Peripherals\inc\at32f421_usart.h
       Source file:   Device\Firmware\Peripherals\src\at32f421_usart.c
 
    * Component: ArteryTek::Device:at32f421_firmware_library:tmr:2.0.0
-      Include file:  Device\Firmware\Peripherals\inc\at32f421_tmr.h
       Source file:   Device\Firmware\Peripherals\src\at32f421_tmr.c
+      Include file:  Device\Firmware\Peripherals\inc\at32f421_tmr.h
 
    * Component: ArteryTek::Device:at32f421_firmware_library:spi:2.0.0
       Include file:  Device\Firmware\Peripherals\inc\at32f421_spi.h
       Source file:   Device\Firmware\Peripherals\src\at32f421_spi.c
 
    * Component: ArteryTek::Device:at32f421_firmware_library:misc:2.0.0
-      Source file:   Device\Firmware\Peripherals\src\at32f421_misc.c
       Include file:  Device\Firmware\Peripherals\inc\at32f421_misc.h
+      Source file:   Device\Firmware\Peripherals\src\at32f421_misc.c
 
    * Component: ArteryTek::Device:at32f421_firmware_library:gpio:2.0.0
-      Source file:   Device\Firmware\Peripherals\src\at32f421_gpio.c
       Include file:  Device\Firmware\Peripherals\inc\at32f421_gpio.h
+      Source file:   Device\Firmware\Peripherals\src\at32f421_gpio.c
 
    * Component: ArteryTek::Device:at32f421_firmware_library:flash:2.0.0
       Include file:  Device\Firmware\Peripherals\inc\at32f421_flash.h
@@ -118,8 +123,8 @@ Package Vendor: ArteryTek
       Source file:   Device\Firmware\Peripherals\src\at32f421_ertc.c
 
    * Component: ArteryTek::Device:at32f421_firmware_library:crm:2.0.0
-      Include file:  Device\Firmware\Peripherals\inc\at32f421_crm.h
       Source file:   Device\Firmware\Peripherals\src\at32f421_crm.c
+      Include file:  Device\Firmware\Peripherals\inc\at32f421_crm.h
 
    * Component: ArteryTek::Device:at32f421_firmware_library:adc:2.0.0
       Include file:  Device\Firmware\Peripherals\inc\at32f421_adc.h
