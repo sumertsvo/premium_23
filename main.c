@@ -1594,10 +1594,15 @@ void start_setup()
     gpio_bits_reset(PIN_POWER_RELAY);
     gpio_bits_reset(PIN_CONTROL_RELAY);
     gpio_bits_reset(PIN_STATE_ALARM);
-		gpio_bits_reset(PIN_STATE_MOTOR);
+	gpio_bits_reset(PIN_STATE_MOTOR);
     gpio_bits_reset(PIN_POWER_SENSOR);
     gpio_bits_reset(PIN_ZUMMER);
     gpio_bits_reset(PIN_LED_RED);
+	gpio_bits_reset(PIN_BAT_TEST);
+	gpio_bits_reset(PIN_SOURSE_OFF);
+	gpio_bits_reset(PIN_RADIO_LED);
+	gpio_bits_reset(PIN_RF_POWER);
+	gpio_bits_reset(PIN_MODULE_POWER);
 
     time_rotation = 0;
     time_relay_power = 0;
