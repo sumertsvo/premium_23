@@ -15,25 +15,25 @@
 #define PIN_METER_1 				GPIOA,GPIO_PINS_1
 #define PIN_METER_2 				GPIOA,GPIO_PINS_2
 #define PIN_BAT_VOLT 				GPIOA,GPIO_PINS_7
-#define PIN_FUN 						GPIOA,GPIO_PINS_0
-#define PIN_SOURSE_OFF 			GPIOB,GPIO_PINS_11
+#define PIN_FUN 					GPIOA,GPIO_PINS_0
+#define PIN_SOURSE_OFF 				GPIOB,GPIO_PINS_11
 #define PIN_BAT_TEST 				GPIOB,GPIO_PINS_10
 #define PIN_LED_2 					GPIOF,GPIO_PINS_0
 #define PIN_LED_3 					GPIOC,GPIO_PINS_15
 #define PIN_LED_4 					GPIOC,GPIO_PINS_14
 #define PIN_LED_1 					GPIOC,GPIO_PINS_13
 #define PIN_LED_RED 				GPIOF,GPIO_PINS_7
-#define PIN_LED_GREEN 			GPIOF,GPIO_PINS_6
+#define PIN_LED_GREEN 				GPIOF,GPIO_PINS_6
 #define PIN_LED_BLUE 				GPIOA,GPIO_PINS_12
 #define PIN_RF_POWER 				GPIOB,GPIO_PINS_8
-#define PIN_MODULE_POWER 		GPIOB,GPIO_PINS_9
-#define PIN_POWER_RELAY 		GPIOB,GPIO_PINS_13
-#define PIN_CONTROL_RELAY 	GPIOB,GPIO_PINS_12
+#define PIN_MODULE_POWER 			GPIOB,GPIO_PINS_9
+#define PIN_POWER_RELAY 			GPIOB,GPIO_PINS_13
+#define PIN_CONTROL_RELAY 			GPIOB,GPIO_PINS_12
 #define PIN_ZUMMER 					GPIOA,GPIO_PINS_11
-#define PIN_RS485_DIRECT 		GPIOB,GPIO_PINS_2
-#define PIN_POWER_SENSOR 		GPIOB,GPIO_PINS_2
-#define PIN_TKEY 						GPIOB,GPIO_PINS_14
-#define PIN_RADIO_LED 			GPIOB,GPIO_PINS_15
+#define PIN_RS485_DIRECT 			GPIOB,GPIO_PINS_2
+#define PIN_POWER_SENSOR 			GPIOB,GPIO_PINS_2
+#define PIN_TKEY 					GPIOB,GPIO_PINS_14
+#define PIN_RADIO_LED 				GPIOB,GPIO_PINS_15
 #define PIN_BUTTON 					GPIOF,GPIO_PINS_1
 #define PIN_SPI_OUT 				GPIOB,GPIO_PINS_5
 #define PIN_SPI_INP 				GPIOB,GPIO_PINS_4
@@ -43,10 +43,10 @@
 #define PIN_MCU_TX_T 				GPIOB,GPIO_PINS_6
 #define PIN_MCU_RX			 		GPIOA,GPIO_PINS_10
 #define PIN_MCU_TX			 		GPIOA,GPIO_PINS_9
-#define PIN_STATE_MOTOR	 		GPIOB,GPIO_PINS_0
-#define PIN_STATE_ALARM	 		GPIOA,GPIO_PINS_8
-#define SWDCLK							GPIOA,GPIO_PINS_14
-#define SWDIO								GPIOA,GPIO_PINS_13
+#define PIN_STATE_MOTOR	 			GPIOB,GPIO_PINS_0
+#define PIN_STATE_ALARM	 			GPIOA,GPIO_PINS_8
+#define SWDCLK						GPIOA,GPIO_PINS_14
+#define SWDIO						GPIOA,GPIO_PINS_13
 
 /*_____________________________________________________________________*/
 
@@ -65,7 +65,7 @@ const unsigned 		UP_RESISTANSE = 20000;
 const char 				WSP_MEAS_COUNT = 4;
 const char 				FUN_MEAS_COUNT = 3; 
 const char 				BUTTON_MEAS_COUNT =3;
-const char 				BUTTON_LONG_MEAS_COUNT =3;
+const char 				BUTTON_LONG_MEAS_COUNT =10;
 
 const char 				RELAY_POWER_WORK_DELAY = 15; // sec
 const char 				RELAY_GAP = 1; //sec
@@ -345,30 +345,25 @@ void led_standby()
 	static char i;
 	
 	
-	/*
-	led_flags.LED_1_ON = 1;
-	led_flags.LED_2_ON = 1;
-	led_flags.LED_3_ON = 1;
-	led_flags.LED_4_ON = 1;
-	*/
 	
+//	if (!flags.bits.STAND_WAIT)
+  //  {
+		if (i==24) i=0;
 	
-
-	if (i==24) i=0;
+		led_flags.SET_RED= 		stand_matrix[i][0];
+		led_flags.SET_GREEN= 	stand_matrix[i][1];
+		led_flags.SET_BLUE= 	stand_matrix[i][2];
 	
-	led_flags.SET_RED= 		stand_matrix[i][0];
-	led_flags.SET_GREEN= 	stand_matrix[i][1];
-	led_flags.SET_BLUE= 	stand_matrix[i][2];
-	
-	if (led_rotate_right_tick()==0) {
-	static	char k=0;
+		if (led_rotate_right_tick()==0) {
+		static	char k=0;
 		++k;
-		if (k==3) {
-			k=0;
-		++i;
+		if (k==3)
+			{
+				k=0;
+				++i;
+			}
 		}
-	}
-	 
+//	} 
 
 }
 
@@ -670,6 +665,7 @@ void fun_work()
 		//(flags.bits.CLOSED || !(flags.bits.OPENED || flags.bits.CLOSED) ) ) 
 		{
             beep_short_count = 1;
+			flags.bits.STAND_WAIT=1;
             open();
         };
 
@@ -685,6 +681,7 @@ void fun_work()
             //&& !flags.bits.AUTOROTATION_WORK)
         {
             beep_short_count = 2;
+			flags.bits.STAND_WAIT=1;
             close();
         }
 
@@ -1458,26 +1455,25 @@ void get_fun()
         if (PIN_FUN_STATE_GetValue()) fun_counter--;
         else fun_counter++;
 
-        if (fun_counter > FUN_MEAS_COUNT) {
+        if (fun_counter > FUN_MEAS_COUNT)
+		{
             fun_counter = FUN_MEAS_COUNT;
             flags.bits.FUN_LOW = 0;
             flags.bits.FUN_HIGH = 1;
             flags.bits.TARGET_POS_CLOSED=1;
             flags.bits.TARGET_POS_OPENED=0;
-			flags.bits.STAND_WAIT=1;
-        } else if (fun_counter<-FUN_MEAS_COUNT) {
 			
-			
+        } 
+		else 
+		if (fun_counter<-FUN_MEAS_COUNT) 
+		{	
 			
             fun_counter = -FUN_MEAS_COUNT;
             flags.bits.FUN_LOW = 1;
             flags.bits.FUN_HIGH = 0;
             flags.bits.TARGET_POS_CLOSED=0;
             flags.bits.TARGET_POS_OPENED=1;
-			flags.bits.STAND_WAIT=1;
-			
-		
-		
+				
 			
         }
         flags.bits.ALLOW_FUN = 0;
@@ -1488,31 +1484,43 @@ void get_fun()
 void get_button()
 {
     
-        static signed char button_counter;
+        static  char button_counter;
 
 	 //   static signed char button_long_counter;
 	
-        if (gpio_input_data_bit_read(PIN_BUTTON)==0) button_counter--;
-        else button_counter++;
+        if (gpio_input_data_bit_read(PIN_BUTTON)==0) button_counter++;
+        else button_counter=0;
+	
+         if (button_counter == BUTTON_MEAS_COUNT)
+			{
+                if (flags.bits.ALARM_OFF)
+				{
+				beep_long();
+				flags.bits.BUTTON_CLOSE = !flags.bits.BUTTON_CLOSE;			  
+				}
+				if (flags.bits.ALARM_ON)
+				{	
+				flags.bits.MELODY_ON =0;
+				flags.bits.SIREN =0;
+				}
+				flags.bits.STAND_WAIT=1;
+			}	
+				
+		if (button_counter>BUTTON_LONG_MEAS_COUNT) 
+		{
+            button_counter = BUTTON_LONG_MEAS_COUNT;
 
-        if (button_counter > BUTTON_MEAS_COUNT) {
-            button_counter = BUTTON_MEAS_COUNT;
-					
-					
-        } else if (button_counter<-BUTTON_MEAS_COUNT) {
-            button_counter = -BUTTON_MEAS_COUNT;
-			
-          if (flags.bits.ALARM_OFF)
-		  {
-			beep_long();
-			flags.bits.BUTTON_CLOSE = !flags.bits.BUTTON_CLOSE;			  
-		  }
-		 if (flags.bits.ALARM_ON)
-		{	
-		clear_alarm(); 
+			if (flags.bits.ALARM_OFF)
+				{
+				//beep_long();
+				//flags.bits.BUTTON_CLOSE = !flags.bits.BUTTON_CLOSE;			  
+				}
+			if (flags.bits.ALARM_ON)
+				{	
+				clear_alarm(); 
+				}
+			flags.bits.STAND_WAIT=1;
 		}
-		flags.bits.STAND_WAIT=1;
-        }
      
     
 }
