@@ -15,25 +15,25 @@
 #define PIN_METER_1 				GPIOA,GPIO_PINS_1
 #define PIN_METER_2 				GPIOA,GPIO_PINS_2
 #define PIN_BAT_VOLT 				GPIOA,GPIO_PINS_7
-#define PIN_FUN 					GPIOA,GPIO_PINS_0
-#define PIN_SOURSE_OFF 				GPIOB,GPIO_PINS_11
+#define PIN_FUN 						GPIOA,GPIO_PINS_0
+#define PIN_SOURSE_OFF 			GPIOB,GPIO_PINS_11
 #define PIN_BAT_TEST 				GPIOB,GPIO_PINS_10
 #define PIN_LED_2 					GPIOF,GPIO_PINS_0
 #define PIN_LED_3 					GPIOC,GPIO_PINS_15
 #define PIN_LED_4 					GPIOC,GPIO_PINS_14
 #define PIN_LED_1 					GPIOC,GPIO_PINS_13
 #define PIN_LED_RED 				GPIOF,GPIO_PINS_7
-#define PIN_LED_GREEN 				GPIOF,GPIO_PINS_6
+#define PIN_LED_GREEN 			GPIOF,GPIO_PINS_6
 #define PIN_LED_BLUE 				GPIOA,GPIO_PINS_12
 #define PIN_RF_POWER 				GPIOB,GPIO_PINS_8
-#define PIN_MODULE_POWER 			GPIOB,GPIO_PINS_9
-#define PIN_POWER_RELAY 			GPIOB,GPIO_PINS_13
-#define PIN_CONTROL_RELAY 			GPIOB,GPIO_PINS_12
+#define PIN_MODULE_POWER 		GPIOB,GPIO_PINS_9
+#define PIN_POWER_RELAY 		GPIOB,GPIO_PINS_13
+#define PIN_CONTROL_RELAY 	GPIOB,GPIO_PINS_12
 #define PIN_ZUMMER 					GPIOA,GPIO_PINS_11
-#define PIN_RS485_DIRECT 			GPIOB,GPIO_PINS_2
-#define PIN_POWER_SENSOR 			GPIOB,GPIO_PINS_2
-#define PIN_TKEY 					GPIOB,GPIO_PINS_14
-#define PIN_RADIO_LED 				GPIOB,GPIO_PINS_15
+#define PIN_RS485_DIRECT 		GPIOB,GPIO_PINS_2
+#define PIN_POWER_SENSOR 		GPIOB,GPIO_PINS_2
+#define PIN_TKEY 						GPIOB,GPIO_PINS_14
+#define PIN_RADIO_LED 			GPIOB,GPIO_PINS_15
 #define PIN_BUTTON 					GPIOF,GPIO_PINS_1
 #define PIN_SPI_OUT 				GPIOB,GPIO_PINS_5
 #define PIN_SPI_INP 				GPIOB,GPIO_PINS_4
@@ -43,10 +43,10 @@
 #define PIN_MCU_TX_T 				GPIOB,GPIO_PINS_6
 #define PIN_MCU_RX			 		GPIOA,GPIO_PINS_10
 #define PIN_MCU_TX			 		GPIOA,GPIO_PINS_9
-#define PIN_STATE_MOTOR	 			GPIOB,GPIO_PINS_0
-#define PIN_STATE_ALARM	 			GPIOA,GPIO_PINS_8
-#define SWDCLK						GPIOA,GPIO_PINS_14
-#define SWDIO						GPIOA,GPIO_PINS_13
+#define PIN_STATE_MOTOR	 		GPIOB,GPIO_PINS_0
+#define PIN_STATE_ALARM	 		GPIOA,GPIO_PINS_8
+#define SWDCLK							GPIOA,GPIO_PINS_14
+#define SWDIO								GPIOA,GPIO_PINS_13
 
 /*_____________________________________________________________________*/
 
@@ -99,7 +99,6 @@ struct color {
 static union {
 		uint64_t  value;
     struct {
-
         unsigned 	ALARM_ON : 1;
         unsigned 	ALARM_OFF : 1;
         unsigned 	FUN_HIGH : 1;
@@ -124,7 +123,7 @@ static union {
         unsigned 	MOVING_ALLOWED : 1;
         unsigned 	AUTOROTATION_WORK: 1;
         unsigned 	MELODY_ON: 1;
-        unsigned 	MSTICK_ALLOW: 1;
+        unsigned 	: 1;
         unsigned 	SEC_LOCK : 1;
 
         unsigned  LAST_BEEP_LONG: 1;
@@ -171,7 +170,6 @@ static union {
         unsigned : 1;
         unsigned : 1;
         unsigned : 1;
-
     } bits;
 } flags;
 
@@ -184,17 +182,17 @@ struct {
         unsigned 	RED : 1;
         unsigned 	GREEN : 1;
         unsigned 	BLUE: 1;
-        unsigned 	LED_1_ON: 1;
-
+				struct 		color active_color;
+	
+				struct 		color collors[64];
+				unsigned 	LED_1_ON: 1;
         unsigned 	LED_2_ON: 1;
         unsigned 	LED_3_ON : 1;
         unsigned 	LED_4_ON : 1;
-				struct 		color active_color;
-				struct 		color collors[64];
         char 			SET_GREEN;
         char 			SET_BLUE;
         char 			SET_RED;
-        unsigned  : 1;
+        
 
         unsigned  : 1;
         unsigned  : 1;
@@ -205,15 +203,22 @@ struct {
         unsigned  : 1;
         unsigned  : 1;
 
-        unsigned  : 1;
-        unsigned  : 1;
-        unsigned  : 1;
-        unsigned  : 1;
-        unsigned  : 1;
-        unsigned  : 1;
-        unsigned  : 1;
-        unsigned  : 1;
 } led_flags;
+
+
+struct 
+{
+	
+	unsigned 	MS_TICK_ALLOW: 1;
+	unsigned  MS_100_TICK_ALLOW	: 1;
+	unsigned 	MS_200_TICK_ALLOW : 1;
+	unsigned 	SEC_TICK_ALLOW: 1;
+	unsigned 	SEC_30_TICK_ALLOW: 1;
+	unsigned 	MINUTE_TICK_ALLOW: 1;
+
+} time_flags;
+/*END_FLAGS*/
+
 
 /*_____________________________________________________________________*/
 
@@ -222,22 +227,27 @@ struct {
 
 /*TIMES*/
 
-/*sec_div*/
-uint32_t 	time_rotation;
-unsigned 	time_relay_power; 
-unsigned 	time_relay_control;
-unsigned 	time_relay_gap;
+struct 
+{
+	/*sec_div*/
+	uint32_t 	time_rotation;
+	unsigned 	time_relay_power; 
+	unsigned 	time_relay_control;
+	unsigned 	time_relay_gap;
 
-uint64_t 	tone_gap_millis;
-char 			sec_count = 0;
-char 			time_melody; //minute
-char 			time_moving_wait;
+	uint64_t 	tone_gap_millis;
+	char 			sec_count;// = 0;
+	char 			time_melody; //minute
+	char 			time_moving_wait;
 
 
-/*ms_div*/
+	/*ms_div*/
 
-uint64_t 	millis = 0 ;
-unsigned 	ms_tone_delay = 0;
+	uint64_t 	millis; //= 0 ;
+	unsigned 	ms_tone_delay; //= 0;
+		
+} times;
+
 /*_____________________________________________________________________*/
 
 char led_matrix [8][4] =
@@ -295,19 +305,12 @@ char beep_double_count;
 void mx_adc_clock_init(void){
   crm_adc_clock_div_set(CRM_ADC_DIV_2);
 }
-
-
-
-
+//
 
 
 /*SERVICE*/
 
 /*led*/
-
-
-
-
 
 
 char led_rotate_right_tick()
@@ -323,6 +326,7 @@ char led_rotate_right_tick()
 	
 	return i;
 }
+//
 
 char led_rotate_left_tick()
 {
@@ -338,6 +342,7 @@ char led_rotate_left_tick()
 
 	return i;
 }
+//
 
 
 void led_standby()
@@ -366,6 +371,7 @@ void led_standby()
 //	} 
 
 }
+//
 
 
 void switch_color()
@@ -400,6 +406,7 @@ if (color_ms_counter>=5){
 		color_ms_counter=0;
 }
 }
+//
 
 void framing()
 {
@@ -441,12 +448,14 @@ void framing()
 	frame_ms_counter=0;
 	}
 }
+//
 
 void switch_led()
 {
 	framing();
 	switch_color();
 }
+//
 	
 /*SOUND*/
 void start_tone()
@@ -455,6 +464,7 @@ void start_tone()
     flags.bits.TONE_ON = 1;
     flags.bits.TONE_OFF = 0;
 }
+//
 
 void stop_tone()
 {
@@ -464,25 +474,28 @@ void stop_tone()
     flags.bits.TONE_OFF = 1;
 
 }
+//
 
 void beep_short()
 {
 
     if (beep_short_count > 0)	beep_short_count--;
-    ms_tone_delay = SHORT_ZUMMER_DELAY;
+    times.ms_tone_delay = SHORT_ZUMMER_DELAY;
     flags.bits.LAST_BEEP_LONG = 0;
     start_tone();
 }
+//
 
 
 void beep_long()
 {
 
     if (beep_long_count > 0) 	beep_long_count--;
-    ms_tone_delay = LONG_ZUMMER_DELAY;
+    times.ms_tone_delay = LONG_ZUMMER_DELAY;
     flags.bits.LAST_BEEP_LONG = 1;
     start_tone();
 }
+//
 
 
 void beep_double()
@@ -493,6 +506,7 @@ void beep_double()
         beep_long();
     }
 }
+//
 
 /*moving*/
 void go_close() 
@@ -506,14 +520,15 @@ void go_close()
         flags.bits.RELAY_POWER_ON = 0;
         flags.bits.RELAY_CONTROL_ON = 1;
 
-        time_relay_control = RELAY_GAP + RELAY_POWER_WORK_DELAY + RELAY_GAP;
-        time_relay_power = RELAY_POWER_WORK_DELAY;
-        time_relay_gap = RELAY_GAP;
+        times.time_relay_control = RELAY_GAP + RELAY_POWER_WORK_DELAY + RELAY_GAP;
+        times.time_relay_power = RELAY_POWER_WORK_DELAY;
+        times.time_relay_gap = RELAY_GAP;
 
-        time_rotation = 0;
+        times.time_rotation = 0;
 
   //  }
 }
+//
 
 void go_open()
 {
@@ -527,10 +542,11 @@ void go_open()
         flags.bits.RELAY_CONTROL_ON = 0;
         flags.bits.RELAY_POWER_ON = 1;
 
-        time_relay_power = RELAY_POWER_WORK_DELAY;
+        times.time_relay_power = RELAY_POWER_WORK_DELAY;
         return;
    // }
 }
+//
 
 
 
@@ -545,7 +561,7 @@ void close()
         go_close();
     }
 }
-
+//
 
 
 void open()
@@ -558,6 +574,7 @@ void open()
         go_open();
     }
 }
+//
 
 
 void relay_tick()
@@ -569,9 +586,9 @@ void relay_tick()
 
 
     if (flags.bits.OPENING) {
-        if (time_relay_power > 0) {
-            time_relay_power--;
-            if (time_relay_power == 0) {
+        if (times.time_relay_power > 0) {
+            times.time_relay_power--;
+            if (times.time_relay_power == 0) {
                 flags.bits.RELAY_POWER_ON = 0;
                 flags.bits.OPENED = 1;
                 flags.bits.OPENING = 0;
@@ -585,20 +602,20 @@ void relay_tick()
 
     if (flags.bits.CLOSING) {
 
-        if (time_relay_gap == 0) {
-            if (time_relay_power > 0) {
+        if (times.time_relay_gap == 0) {
+            if (times.time_relay_power > 0) {
                 flags.bits.RELAY_POWER_ON = 1;
-                time_relay_power--;
+                times.time_relay_power--;
             } else {
                 flags.bits.RELAY_POWER_ON = 0;
             }
         } else {
-            time_relay_gap--;
+            times.time_relay_gap--;
         }
 
-        if (time_relay_control > 0) {
-            time_relay_control--;
-            if (time_relay_control == 0) {
+        if (times.time_relay_control > 0) {
+            times.time_relay_control--;
+            if (times.time_relay_control == 0) {
                 flags.bits.RELAY_CONTROL_ON = 0;
                 flags.bits.CLOSED = 1;
                 flags.bits.CLOSING = 0;
@@ -609,6 +626,7 @@ void relay_tick()
     }
 
 }
+//
 
 
 /*logic*/
@@ -626,13 +644,14 @@ void start_alarm()
 	
 	
 	
-    sec_count=0; 
+    times.sec_count=0; 
 		
 	led_flags.SET_RED=3;
 	led_flags.SET_GREEN=0;
 	led_flags.SET_BLUE=0;
 	
 }
+//
 
 void clear_alarm()
 {
@@ -649,6 +668,7 @@ void clear_alarm()
 	led_flags.LED_3_ON=0;
 	led_flags.LED_4_ON=0;
 }
+//
 
 void fun_work()
 {
@@ -687,21 +707,22 @@ void fun_work()
 
     }
 }
+//
 
 
 void autorotation_work()
 {
 
-    if ((time_rotation > AUTOROTATION_DELAY) &&
+    if ((times.time_rotation > AUTOROTATION_DELAY) &&
             flags.bits.CLOSED &&
             flags.bits.ALARM_OFF &&
 			flags.bits.TARGET_POS_OPENED
        ) {
         open();
-        time_rotation = 0;
+        times.time_rotation = 0;
 		flags.bits.TARGET_POS_CLOSED=0;
     }
-    if ((time_rotation > AUTOROTATION_DELAY) &&
+    if ((times.time_rotation > AUTOROTATION_DELAY) &&
             flags.bits.OPENED
        ) {
 		  flags.bits.TARGET_POS_CLOSED =1;
@@ -710,6 +731,7 @@ void autorotation_work()
     }
 
 }
+//
 
 
 /*¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦*/
@@ -721,17 +743,17 @@ void minute_tick()
 
 	flags.bits.STAND_WAIT=0;
 	flags.bits.LOADED =1;
-    if (time_melody > 0) {
-        time_melody--;
+    if (times.time_melody > 0) {
+        times.time_melody--;
     } else {
-        if (time_melody == 0) {
+        if (times.time_melody == 0) {
             flags.bits.SIREN = 1;
-            time_melody = MELODY_REPEAT_DELAY;
+            times.time_melody = MELODY_REPEAT_DELAY;
         }
     };
 
 }
-
+//
 
 void sec_30_work()
 {
@@ -743,22 +765,21 @@ void sec_30_work()
         }
     }
 }
-
-
+//
 
 void sec_work()
 {
 
     flags.bits.SEC_LOCK = 1;
-    sec_count++;
+    times.sec_count++;
 
 	
 
 	
     //back-forward gap
     if (!flags.bits.MOVING_ALLOWED) {
-        if (time_moving_wait > 0) {
-            time_moving_wait--;
+        if (times.time_moving_wait > 0) {
+            times.time_moving_wait--;
         } else {
             flags.bits.MOVING_ALLOWED = 1;
         }
@@ -766,7 +787,7 @@ void sec_work()
 
     //autorotation tick
     if (!flags.bits.CLOSED) {
-        time_rotation++;
+        times.time_rotation++;
     }
     relay_tick();
 
@@ -789,17 +810,18 @@ void sec_work()
     //melody tick
     if (flags.bits.ALARM_ON) {
 
-        if (sec_count == 30|| sec_count==60) {
+        if (times.sec_count == 30|| times.sec_count==60) {
             sec_30_work();
         }
 
-        if (sec_count == 60) {
+        if (times.sec_count == 60) {
             minute_tick();
-            sec_count = 0;
+            times.sec_count = 0;
         }
 
     }
 }
+//
 
 void ms_200_work()
 {
@@ -908,11 +930,52 @@ void ms_200_work()
 
     }
 }
+//
 
+void get_button()
+{
+    
+        static  char button_counter;
 
+	 //   static signed char button_long_counter;
+	
+        if (gpio_input_data_bit_read(PIN_BUTTON)==0) button_counter++;
+        else button_counter=0;
+	
+         if (button_counter == BUTTON_MEAS_COUNT)
+			{
+                if (flags.bits.ALARM_OFF)
+				{
+				beep_long();
+				flags.bits.BUTTON_CLOSE = !flags.bits.BUTTON_CLOSE;			  
+				}
+				if (flags.bits.ALARM_ON)
+				{	
+				flags.bits.MELODY_ON =0;
+				flags.bits.SIREN =0;
+				}
+				flags.bits.STAND_WAIT=1;
+			}	
+				
+		if (button_counter>BUTTON_LONG_MEAS_COUNT) 
+		{
+            button_counter = BUTTON_LONG_MEAS_COUNT;
 
-
-void get_button();
+			if (flags.bits.ALARM_OFF)
+				{
+				//beep_long();
+				//flags.bits.BUTTON_CLOSE = !flags.bits.BUTTON_CLOSE;			  
+				}
+			if (flags.bits.ALARM_ON)
+				{	
+				clear_alarm(); 
+				}
+			flags.bits.STAND_WAIT=1;
+		}
+     
+    
+}
+//
 
 void ms_100_work()
 {
@@ -969,43 +1032,44 @@ void ms_100_work()
         }
    // }
 }
+//
 
 void ms_tick()
 {
 
-
-	
     static uint64_t ms200_count = 0;
     static uint64_t ms100_count = 0;
     static uint64_t ms1000_count = 0;
 
-			flags.bits.MSTICK_ALLOW =0;
-    if (ms_tone_delay > 0) {
-        ms_tone_delay--;
+		time_flags.MS_TICK_ALLOW = 0;
+	
+    if (times.ms_tone_delay > 0) {
+        times.ms_tone_delay--;
     }   else {
         stop_tone();
     }
-
-    if (ms100_count <=millis) {
-        ms100_count = millis+100;
+	
+    if (ms100_count <=times.millis) {
+        ms100_count = times.millis+100;
         ms_100_work();
     }
 
-    if (ms200_count <= millis) {
-        ms200_count = millis + 200;
+    if (ms200_count <= times.millis) {
+        ms200_count = times.millis + 200;
         ms_200_work();
     }
 
 
-    if (ms1000_count <= millis) {
-        ms1000_count = millis+1000;
+    if (ms1000_count <= times.millis) {
+        ms1000_count = times.millis+1000;
         //  if (!flags.bits.SEC_LOCK)
         sec_work();
     }
 	
-    ++millis;
+    ++times.millis;
    
 }
+//
 
 /*¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦*/
 
@@ -1014,8 +1078,7 @@ char PIN_FUN_STATE_GetValue()
 {
     return(fun_result);
 }
-
-
+//
 
 void gpio_set(gpio_type *PORT, uint32_t PIN, gpio_drive_type DRIVE, gpio_mode_type MODE, gpio_output_type OUT_TYPE, gpio_pull_type PULL )
 {
@@ -1033,6 +1096,7 @@ void gpio_set(gpio_type *PORT, uint32_t PIN, gpio_drive_type DRIVE, gpio_mode_ty
     gpio_init( PORT,pina);
 
 }
+//
 
 void timer_init()
 {
@@ -1052,14 +1116,11 @@ void timer_init()
 
     tmr_counter_enable(TMR6,TRUE);
 
-
-
 }
+//
 
 void my_gpio_init()
-{
-	
-	
+{	
 
 gpio_set(PIN_SENSOR_1,
              GPIO_DRIVE_STRENGTH_MODERATE,
@@ -1199,8 +1260,7 @@ gpio_set(PIN_BUTTON,
 	
 
 }
-
-
+//
 
 void hardware_init()
 {
@@ -1254,7 +1314,7 @@ void hardware_init()
     adc_ordinary_channel_set(ADC1,ADC_CHANNEL_4,1,ADC_SAMPLETIME_239_5);
 
 }
-
+//
 
 void hardware_work()
 {
@@ -1279,7 +1339,7 @@ void hardware_work()
         gpio_bits_reset(PIN_ZUMMER);
     };
 }
-
+//
 
 void zummer_switch()
 {
@@ -1292,11 +1352,10 @@ void zummer_switch()
 #endif
 
 }
+//
+
 void get_wsp()
 {
-
-
-	
 	
     if (flags.bits.ALLOW_MEASURE) {
 
@@ -1445,6 +1504,7 @@ void get_wsp()
         flags.bits.ALLOW_MEASURE = 0;
     }
 }
+//
 
 
 void get_fun()
@@ -1479,53 +1539,7 @@ void get_fun()
         flags.bits.ALLOW_FUN = 0;
     }
 }
-
-
-void get_button()
-{
-    
-        static  char button_counter;
-
-	 //   static signed char button_long_counter;
-	
-        if (gpio_input_data_bit_read(PIN_BUTTON)==0) button_counter++;
-        else button_counter=0;
-	
-         if (button_counter == BUTTON_MEAS_COUNT)
-			{
-                if (flags.bits.ALARM_OFF)
-				{
-				beep_long();
-				flags.bits.BUTTON_CLOSE = !flags.bits.BUTTON_CLOSE;			  
-				}
-				if (flags.bits.ALARM_ON)
-				{	
-				flags.bits.MELODY_ON =0;
-				flags.bits.SIREN =0;
-				}
-				flags.bits.STAND_WAIT=1;
-			}	
-				
-		if (button_counter>BUTTON_LONG_MEAS_COUNT) 
-		{
-            button_counter = BUTTON_LONG_MEAS_COUNT;
-
-			if (flags.bits.ALARM_OFF)
-				{
-				//beep_long();
-				//flags.bits.BUTTON_CLOSE = !flags.bits.BUTTON_CLOSE;			  
-				}
-			if (flags.bits.ALARM_ON)
-				{	
-				clear_alarm(); 
-				}
-			flags.bits.STAND_WAIT=1;
-		}
-     
-    
-}
-
-
+//
 
 
 void TMR6_GLOBAL_IRQHandler(void)
@@ -1535,7 +1549,7 @@ void TMR6_GLOBAL_IRQHandler(void)
     static char i =0;
     ++i;
     if (i>=8) {
-			flags.bits.MSTICK_ALLOW =1;
+			time_flags.MS_TICK_ALLOW = 1;
         i=0;
     }
 		
@@ -1546,11 +1560,10 @@ void TMR6_GLOBAL_IRQHandler(void)
 		tmr_period_value_set(TMR6,1);
     TMR6 ->ists_bit.ovfif =0;
 }
+//
 
 void ADC1_CMP_IRQHandler(void)
 {
-    
-	//wdt_counter_reload();
 	
 	if (flags.bits.MEASURING){
 		
@@ -1577,20 +1590,17 @@ void ADC1_CMP_IRQHandler(void)
 		
 		
 	fun_result = gpio_input_data_bit_read(PIN_FUN);	
-	
-	
-
-    
+	    
 
 	flags.bits.MEASURING = 0;
-    flags.bits.ALLOW_MEASURE = 1;
-    flags.bits.ALLOW_FUN =1; 
+  flags.bits.ALLOW_MEASURE = 1;
+  flags.bits.ALLOW_FUN =1; 
 
 	}
 	
-	  adc_interrupt_enable(ADC1,ADC_CCE_INT,FALSE);
+	adc_interrupt_enable(ADC1,ADC_CCE_INT,FALSE);
 }
-
+//
 
 
 void start_setup()
@@ -1602,24 +1612,24 @@ void start_setup()
     gpio_bits_reset(PIN_POWER_RELAY);
     gpio_bits_reset(PIN_CONTROL_RELAY);
     gpio_bits_reset(PIN_STATE_ALARM);
-	gpio_bits_reset(PIN_STATE_MOTOR);
+		gpio_bits_reset(PIN_STATE_MOTOR);
     gpio_bits_reset(PIN_POWER_SENSOR);
     gpio_bits_reset(PIN_ZUMMER);
     gpio_bits_reset(PIN_LED_RED);
-	gpio_bits_reset(PIN_BAT_TEST);
-	gpio_bits_reset(PIN_SOURSE_OFF);
-	gpio_bits_reset(PIN_RADIO_LED);
-	gpio_bits_reset(PIN_RF_POWER);
-	gpio_bits_reset(PIN_MODULE_POWER);
+		gpio_bits_reset(PIN_BAT_TEST);
+		gpio_bits_reset(PIN_SOURSE_OFF);
+		gpio_bits_reset(PIN_RADIO_LED);
+		gpio_bits_reset(PIN_RF_POWER);
+		gpio_bits_reset(PIN_MODULE_POWER);
 
-    time_rotation = 0;
-    time_relay_power = 0;
-    time_relay_control = 0;
-    time_relay_gap = 0;
-    ms_tone_delay = 0;
+    times.time_rotation = 0;
+    times.time_relay_power = 0;
+    times.time_relay_control = 0;
+    times.time_relay_gap = 0;
+		times.ms_tone_delay = 0;
 
 
-    time_melody = 0;
+    times.time_melody = 0;
 
 
 
@@ -1640,13 +1650,15 @@ int main(void)
 	led_flags.SET_BLUE=0;
 	led_flags.SET_GREEN=3;
 	
+
+	//gpio_bits_set(PIN_MODULE_POWER);
   while(1)
   {
-	
-	//	 wdt_counter_reload();
+		
+	// wdt_counter_reload();
      hardware_work();
 
-		if(flags.bits.MSTICK_ALLOW){
+		if(time_flags.MS_TICK_ALLOW){
 			ms_tick();			
 		}
          get_wsp();
@@ -1668,10 +1680,4 @@ int main(void)
 	
 	
 }
-
-/*
-
-*/
-
-
-
+//

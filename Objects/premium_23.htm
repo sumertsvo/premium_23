@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\premium_23.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\premium_23.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Feb 09 12:04:20 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Feb 12 21:34:11 2023
 <BR><P>
 <H3>Maximum Stack Usage =        112 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -429,7 +429,7 @@ Global Symbols
 <P><STRONG><a name="[2a]"></a>SystemInit</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, system_at32f421.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_at32f421.o(.text)
 </UL>
-<P><STRONG><a name="[1d]"></a>TMR6_GLOBAL_IRQHandler</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, main.o(i.TMR6_GLOBAL_IRQHandler))
+<P><STRONG><a name="[1d]"></a>TMR6_GLOBAL_IRQHandler</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, main.o(i.TMR6_GLOBAL_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TMR6_GLOBAL_IRQHandler &rArr; zummer_switch
 </UL>
 <BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tmr_period_value_set
@@ -507,7 +507,7 @@ Global Symbols
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;beep_double
 </UL>
 
-<P><STRONG><a name="[52]"></a>clear_alarm</STRONG> (Thumb, 106 bytes, Stack size 0 bytes, main.o(i.clear_alarm))
+<P><STRONG><a name="[52]"></a>clear_alarm</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, main.o(i.clear_alarm))
 <BR><BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_button
 </UL>
 
@@ -578,7 +578,7 @@ Global Symbols
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_clock_config
 </UL>
 
-<P><STRONG><a name="[77]"></a>framing</STRONG> (Thumb, 200 bytes, Stack size 0 bytes, main.o(i.framing))
+<P><STRONG><a name="[77]"></a>framing</STRONG> (Thumb, 206 bytes, Stack size 0 bytes, main.o(i.framing))
 <BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;switch_led
 </UL>
 
@@ -609,7 +609,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[55]"></a>get_wsp</STRONG> (Thumb, 698 bytes, Stack size 8 bytes, main.o(i.get_wsp))
+<P><STRONG><a name="[55]"></a>get_wsp</STRONG> (Thumb, 708 bytes, Stack size 8 bytes, main.o(i.get_wsp))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = get_wsp
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bits_reset
@@ -618,7 +618,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4d]"></a>go_close</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, main.o(i.go_close))
+<P><STRONG><a name="[4d]"></a>go_close</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, main.o(i.go_close))
 <BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;close
 </UL>
 
@@ -684,11 +684,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6f]"></a>led_rotate_left_tick</STRONG> (Thumb, 120 bytes, Stack size 0 bytes, main.o(i.led_rotate_left_tick))
+<P><STRONG><a name="[6f]"></a>led_rotate_left_tick</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, main.o(i.led_rotate_left_tick))
 <BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_200_work
 </UL>
 
-<P><STRONG><a name="[66]"></a>led_rotate_right_tick</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, main.o(i.led_rotate_right_tick))
+<P><STRONG><a name="[66]"></a>led_rotate_right_tick</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, main.o(i.led_rotate_right_tick))
 <BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_200_work
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_standby
 </UL>
@@ -734,7 +734,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ms_tick
 </UL>
 
-<P><STRONG><a name="[6e]"></a>ms_200_work</STRONG> (Thumb, 486 bytes, Stack size 4 bytes, main.o(i.ms_200_work))
+<P><STRONG><a name="[6e]"></a>ms_200_work</STRONG> (Thumb, 530 bytes, Stack size 4 bytes, main.o(i.ms_200_work))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = ms_200_work &rArr; beep_double &rArr; beep_short
 </UL>
 <BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_standby
@@ -798,7 +798,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sec_work
 </UL>
 
-<P><STRONG><a name="[71]"></a>sec_work</STRONG> (Thumb, 148 bytes, Stack size 4 bytes, main.o(i.sec_work))
+<P><STRONG><a name="[71]"></a>sec_work</STRONG> (Thumb, 146 bytes, Stack size 4 bytes, main.o(i.sec_work))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = sec_work
 </UL>
 <BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sec_30_work
@@ -812,7 +812,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_wsp
 </UL>
 
-<P><STRONG><a name="[69]"></a>start_setup</STRONG> (Thumb, 160 bytes, Stack size 8 bytes, main.o(i.start_setup))
+<P><STRONG><a name="[69]"></a>start_setup</STRONG> (Thumb, 150 bytes, Stack size 8 bytes, main.o(i.start_setup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = start_setup &rArr; hardware_init &rArr; my_gpio_init &rArr; gpio_set &rArr; gpio_init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_bits_reset
